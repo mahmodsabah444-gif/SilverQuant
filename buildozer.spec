@@ -14,6 +14,8 @@ android.minapi = 24
 android.ndk_api = 21
 android.accept_sdk_license = True
 
+p4a.branch = develop
+
 [buildozer]
 log_level = 2
 warn_on_root = 1
