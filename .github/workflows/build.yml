@@ -11,23 +11,11 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - name: Build APK with Buildozer Action
+        uses: subito-it/buildozer-action@v1
         with:
-          python-version: '3.10'
-
-      - name: Install System Dependencies
-        run: |
-          sudo apt update
-          sudo apt install -y git zip unzip openjdk-17-jdk autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libssl-dev libffi-dev libsqlite3-dev build-essential ccache lld cmake ninja-build
-
-      - name: Install Buildozer & Cython
-        run: |
-          pip install "cython<3.0.0" buildozer
-
-      - name: Build APK with Buildozer
-        run: |
-          buildozer -v android debug
+          command: buildozer -v android debug
+          buildozer_version: master
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
